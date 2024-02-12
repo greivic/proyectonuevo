@@ -1,0 +1,62 @@
+
+<br>
+     <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-search"></i>
+                {{ title }}
+            </h3>
+{#            <button onclick="abrirmodalcreate('{% url 'Instrumento-add' %}')"#}
+{#                            class="btn btn-outline-secondary rounded-pill">#}
+{#                        <i class="fas fa-plus fa-sm"></i> Insertar#}
+{#                    </button>#}
+        </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                <tr>
+        <th scope="col">Nro</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Opciones</th>
+    </tr>
+                </thead>
+                <tbody>
+                {% for object in all_instrumento %}
+        <tr>
+            <td>{{ object.id }}</td>
+            <td>{{ object.nombre }}</td>
+            <td>{{ object.color }}</td>
+            <td>
+
+                <button onclick="abrirmodaldetail('{% url 'Instrumento-detail' object.id %}')"
+                                    class="btn btn-sm btn-outline-secondary" style="margin-right: 4px">
+                                <i class="fas fa-server"></i>
+                            </button>
+                            <button onclick="abrirmodaledit('{% url 'Instrumento-update' object.id %}')"
+                                    class="btn btn-sm btn-outline-secondary" style="margin-right: 4px">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="abrirmodaldelete('{% url 'Instrumento-delete' object.id %}')"
+                                    class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+{#                <a href="{% url 'app:type_update' t.id %}" class="btn btn-warning btn-xs btn-flat">#}
+{#                    <i class="fas fa-edit"></i>#}
+{#                </a>#}
+{#                <a href="{% url 'app:type_delete' t.id %}" class="btn btn-danger btn-xs btn-flat">#}
+{#                    <i class="fas fa-trash-alt"></i>#}
+{#                </a>#}
+            </td>
+        </tr>
+    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+{#            <a href="{{ create_url }}" class="btn btn-sm btn-success rounded-pill">#}
+{#                <i class="fas fa-plus"></i> Nuevo registro#}
+{#            </a>#}
+        </div>
+    </div>

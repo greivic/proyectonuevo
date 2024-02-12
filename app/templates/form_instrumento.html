@@ -1,0 +1,62 @@
+<div class="modal-dialog modal-sm" role="document" id="myModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="card-title text-center">
+                {% if action == 'add' %}
+                    <i class="fas fa-plus-square"></i>
+                {% else %}
+                    <i class="fas fa-edit"></i>
+                {% endif %}
+                {{ title }}
+            </h4>
+        </div>
+        {% if action == 'add' %}
+            <form action="{% url 'Instrumento-add' %}" method="POST" enctype="multipart/form-data">
+        {% else %}
+            <form action="{% url 'Instrumento-update' object.id %}" method="POST" enctype="multipart/form-data">
+        {% endif %}
+
+        {% csrf_token %}
+        <div class="modal-body">
+            {{ form.as_p }}
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-secondary rounded-pill">
+                <i class="mdi mdi-content-save"></i> Guardar
+            </button>
+            <a type="button" class="btn btn-outline-secondary rounded-pill"
+            href="{{ cancelar }}">
+                Cancelar
+            </a>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+
+{% block scripts %}
+
+    <script>
+        {% if form.errors %}
+            let errors = '';
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errors += '{{ error }}\n';
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+
+            Swal.fire({
+                title: 'Error',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+    </script>
+{% endblock %}
+
+
+

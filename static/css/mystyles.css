@@ -1,0 +1,59 @@
+/*Boton de busqueda*/
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+.search-container input[type=text] {
+    padding: 1px;
+    padding-left: 32px;
+    border: 1px solid #ccc;
+}
+
+.search-container .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #706565;
+}
+
+/*Scroll de la tabla*/
+.scrolltabla {
+    max-height: 395px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+/* Cambia la altura máxima cuando la pantalla es pequeña */
+@media (max-width: 600px) {
+    .scrolltabla {
+        max-height: 376px;
+    }
+}
+
+/* Cambia la altura máxima cuando la pantalla es mediana */
+@media (min-width: 601px) and (max-width: 900px) {
+    .scrolltabla {
+        max-height: 376px;
+    }
+}
+
+.scrolltabla::-webkit-scrollbar {
+    width: 7px;
+}
+
+.scrolltabla::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.scrolltabla::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5); /* Modificado para ser más transparente */
+    border-radius: 15px 15px 15px 15px; /* Hace que el control deslizante sea ovalado */
+}
+
+.scrolltabla::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

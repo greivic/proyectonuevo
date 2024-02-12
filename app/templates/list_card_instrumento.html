@@ -1,0 +1,90 @@
+{% extends 'GreyGonzIndex.html' %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+{% endblock %}
+
+{% block contenidobody %}
+
+
+
+    <div class="container-fluid">
+        <div class="row py-3">
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <legend class="text-start">
+                    <i class="fas fa-list fa-sm"> </i>
+                    {{ title }}</legend>
+            </div>
+            <div class="col-md-6 d-flex flex-nowrap flex-sm-row">
+                <div class="col-md-6">
+                    <div class="search-container">
+                        <i class="material-icons"><i class="fas fa-search fa-sm"></i> </i>
+                        <input type="text" id="searchInput" class="form-control rounded-pill"
+                               placeholder=" Buscar por nombre">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button onclick="abrirmodalcreate('{% url 'Instrumento-add' %}')"
+                            class="btn btn-outline-secondary rounded-pill">
+                        <i class="fas fa-plus fa-sm"></i> Insertar
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="scrolltabla">
+            <table class="table table-hover text-center">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for object in all_instrumento %}
+                    <tr>
+                        <td>{{ object.nombre }}</td>
+                        <td>{{ object.color }}</td>
+                        <td>
+                            <button onclick="abrirmodaldetail('{% url 'Instrumento-detail' object.id %}')"
+                                    class="btn btn-sm btn-outline-secondary" style="margin-right: 4px">
+                                <i class="fas fa-server"></i>
+                            </button>
+                            <button onclick="abrirmodaledit('{% url 'Instrumento-update' object.id %}')"
+                                    class="btn btn-sm btn-outline-secondary" style="margin-right: 4px">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button onclick="abrirmodaldelete('{% url 'Instrumento-delete' object.id %}')"
+                                    class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="crear" role="dialog"></div>
+    <div class="modal fade" id="editar" role="dialog"></div>
+    <div class="modal fade" id="detail" role="dialog"></div>
+    <div class="modal fade" id="delete" role="dialog"></div>
+
+
+{% endblock %}
+
+
+
